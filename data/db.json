@@ -1,0 +1,82 @@
+[
+  {
+    "name": "LG Television",
+    "description": "Biggest television you will ever see in your entire life.",
+    "image": "https://images.unsplash.com/photo-1539786774582-0707555f1f72?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    "price": 99.99,
+    "category": "Electronics/Gadgets",
+    "stocks": 100
+  },
+  {
+    "name": "Rolex Watch",
+    "description": "Watch your back.",
+    "image": "https://images.unsplash.com/photo-1495857000853-fe46c8aefc30?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
+    "price": 69.99,
+    "category": "Accessories",
+    "stocks": 90
+  },
+  {
+    "name": "Nerf Gun",
+    "description": "Having fun is the best medicine for kids.",
+    "image": "https://images.unsplash.com/photo-1594950981383-6eb659d18fbf?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    "price": 50.99,
+    "category": "Toys/Games",
+    "stocks": 10
+  },
+  {
+    "name": "Long Sleeve Shirt",
+    "description": "Makes a woman go mad for you.",
+    "image": "https://images.unsplash.com/photo-1618354691551-44de113f0164?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=358&q=80",
+    "price": 12.99,
+    "category": "Apparels",
+    "stocks": 65
+  },
+  {
+    "name": "Trampoline",
+    "description": "Boing boing boing",
+    "image": "https://images.unsplash.com/photo-1586206732396-bc9c515536ed?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    "price": 100.99,
+    "category": "Entertainment",
+    "stocks": 35
+  },
+  {
+    "name": "Ballpens",
+    "description": "Color your life with these pens.",
+    "image": "https://images.unsplash.com/photo-1510936994138-07e06c7c5add?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    "price": 100.99,
+    "category": "Arts & Craft",
+    "stocks": 35
+  },
+  {
+    "name": "Air Diffuser",
+    "description": "Breathe life.",
+    "image": "https://images.unsplash.com/photo-1589445369906-962f84b658b9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    "price": 100.99,
+    "category": "Health & Personal Care",
+    "stocks": 35
+  },
+  {
+    "name": "Leather Bag",
+    "description": "Carry all your burdens with ease.",
+    "image": "https://images.unsplash.com/photo-1622560480654-d96214fdc887?ixid=MnwxMjA3fDB8MHxzZWFyY2h8ODV8fGx1Z2dhZ2V8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+    "price": 100.99,
+    "category": "Travel",
+    "stocks": 35
+  },
+  {
+    "name": "Boxing Gloves",
+    "description": "Manny Pacquiao your way to victory.",
+    "image": "https://images.unsplash.com/photo-1521800641212-77d98bb90d21?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    "price": 100.99,
+    "category": "Sports",
+    "stocks": 35
+  },
+  {
+    "name": "Kitchen Knives",
+    "description": "Labooooooo ahhhh",
+    "image": "https://images.unsplash.com/photo-1602063238855-524c4d8b9b18?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    "price": 100.99,
+    "category": "Home",
+    "stocks": 35
+  }
+]

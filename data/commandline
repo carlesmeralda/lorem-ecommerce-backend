@@ -1,0 +1,1 @@
+//mongoimport --uri mongodb+srv://dbAdmin:dbPassword@cluster0.n3vpc.mongodb.net/ecommerceshop --collection products --type json --file ~/Desktop/db.json --jsonArray
