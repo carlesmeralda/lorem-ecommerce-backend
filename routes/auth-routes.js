@@ -2,18 +2,18 @@ const express = require('express')
 const { check } = require('express-validator')
 const router = express.Router()
 
-const userController = require('../controllers/users-controllers')
+const authController = require('../controllers/auth-controllers')
 
 router.post(
   '/signup',
   [
     check('name').not().isEmpty(),
     check('email').normalizeEmail().isEmail(),
-    check('password').isLength({ min: 5 }), // strong password missing
+    check('password').isStrongPassword(), // strong password missing
   ],
-  userController.signup
+  authController.signup
 )
 
-router.post('/login', userController.login)
+router.post('/login', authController.login)
 
 module.exports = router

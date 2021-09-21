@@ -1,7 +1,7 @@
 const { validationResult } = require('express-validator')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const User = require('../models/user-model')
+const User = require('../models/user')
 const HttpError = require('../models/http-error')
 
 const signup = async (req, res, next) => {
@@ -38,6 +38,12 @@ const signup = async (req, res, next) => {
     name,
     email,
     password: hashPassword,
+    cart: {
+      items: [],
+    },
+    wishList: {
+      items: [],
+    },
   })
 
   try {

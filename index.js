@@ -2,8 +2,9 @@ const express = require('express')
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 
-const usersRoute = require('./routes/users-routes')
-const productsRoute = require('./routes/products-routes')
+const adminRoute = require('./routes/admin-routes')
+const authRoute = require('./routes/auth-routes')
+const shopRoute = require('./routes/shop-routes')
 
 dotenv.config()
 
@@ -23,8 +24,9 @@ app.use((req, res, next) => {
   next()
 })
 
-app.use('/api/users', usersRoute)
-app.use('/api/products', productsRoute)
+app.use('/admin', adminRoute)
+app.use('/auth', authRoute)
+app.use('/shop', shopRoute)
 
 mongoose
   .connect(process.env.MONGO_URL, {
