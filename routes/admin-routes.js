@@ -3,10 +3,14 @@ const router = express.Router()
 
 const adminController = require('../controllers/admin-controllers')
 
-router.post('/add-product', adminController.addProduct)
+router.get('/products', adminController.getProducts)
 
-router.patch('/update-product', adminController.updateProduct)
+router.get('/products/:productId', adminController.getProductById)
 
-router.delete('/:productId', adminController.deleteProduct)
+router.delete('/products/:productId', adminController.deleteProduct)
+
+router.post('/products/add', adminController.addProduct)
+
+router.patch('/products/edit/:productId', adminController.editProduct)
 
 module.exports = router
