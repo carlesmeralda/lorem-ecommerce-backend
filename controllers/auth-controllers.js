@@ -38,12 +38,8 @@ const signup = async (req, res, next) => {
     name,
     email,
     password: hashPassword,
-    cart: {
-      items: [],
-    },
-    wishList: {
-      items: [],
-    },
+    cart: [],
+    wishList: [],
   })
 
   try {
