@@ -4,12 +4,14 @@ const router = express.Router()
 
 const authController = require('../controllers/auth-controllers')
 
+router.get('/:userId', authController.getUser)
+
 router.post(
   '/signup',
   [
     check('name').not().isEmpty(),
     check('email').normalizeEmail().isEmail(),
-    check('password').isStrongPassword(), // strong password missing
+    check('password').isStrongPassword(),
   ],
   authController.signup
 )

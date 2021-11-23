@@ -4,6 +4,19 @@ const jwt = require('jsonwebtoken')
 const User = require('../models/user')
 const HttpError = require('../models/http-error')
 
+const getUser = async (req, res, next) => {
+  const userId = req.params.userId
+
+  let user
+  try {
+    user = await User.findById(userId, '-password')
+  } catch (err) {
+    return next(new HttpError('Something went wrong, could not find user', 500))
+  }
+
+  res.json({ user: user.toObject({ getters: true }) })
+}
+
 const signup = async (req, res, next) => {
   const errorValidation = validationResult(req)
 
@@ -116,6 +129,7 @@ const login = async (req, res, next) => {
 }
 
 module.exports = {
+  getUser,
   signup,
   login,
 }

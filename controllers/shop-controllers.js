@@ -95,9 +95,21 @@ const getProductById = async (req, res, next) => {
 
 const getCart = async (req, res, next) => {}
 
-const postCart = async (req, res, next) => {}
+const addToCart = async (req, res, next) => {
+  const { name, price, stocks } = req.body
+}
 
 const deleteCart = async (req, res, next) => {}
+
+const getWish = async (req, res, next) => {}
+
+const addToWish = async (req, res, next) => {}
+
+const deleteWish = async (req, res, next) => {}
+
+const clearCart = async (req, res, next) => {}
+
+const clearWish = async (req, res, next) => {}
 
 const getOrder = async (req, res, next) => {}
 
@@ -107,8 +119,13 @@ module.exports = {
   getProducts,
   getProductById,
   getCart,
-  postCart,
+  addToCart,
   deleteCart,
+  getWish,
+  addToWish,
+  deleteWish,
+  clearCart,
+  clearWish,
   getOrder,
   createOrder,
 }

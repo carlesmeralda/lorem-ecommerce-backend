@@ -9,9 +9,15 @@ router.get('/products/:productId', shopController.getProductById)
 
 router.get('/cart', shopController.getCart)
 
-router.post('/cart', shopController.postCart)
+router.post('/cart', shopController.addToCart)
 
 router.delete('/cart/:productId', shopController.deleteCart)
+
+router.get('/wishlist', shopController.getWish)
+
+router.post('/wishlist', shopController.addToWish)
+
+router.delete('/wishlist/:productId', shopController.deleteWish)
 
 router.get('/orders', shopController.getOrder)
 
