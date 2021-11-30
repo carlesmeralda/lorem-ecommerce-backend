@@ -1,4 +1,5 @@
 const Product = require('../models/product')
+const User = require('../models/user')
 const HttpError = require('../models/http-error')
 
 const getProducts = async (req, res, next) => {
@@ -93,17 +94,116 @@ const getProductById = async (req, res, next) => {
   res.json({ product: product.toObject({ getters: true }) })
 }
 
-const getCart = async (req, res, next) => {}
+const getCart = async (req, res, next) => {
+  const userId = '61a4581b372f1e163515acbb'
+
+  let userCart
+  try {
+    userCart = await User.findById(userId).populate('cart')
+  } catch (err) {
+    return next(new HttpError('Something went wrong, could not find cart', 500))
+  }
+
+  if (!userCart || userCart.cart.length === 0) {
+    return next(new HttpError('Cart is empty at the moment', 404))
+  }
+
+  res.json({
+    cart: userCart.cart.map(item => item.toObject({ getters: true })),
+  })
+}
 
 const addToCart = async (req, res, next) => {
-  const { name, price, stocks } = req.body
+  const userId = '61a4581b372f1e163515acbb'
+  const { id, quantity } = req.body
+
+  const cartProduct = {
+    productId: id,
+    quantity,
+  }
+
+  let user
+  try {
+    user = await User.findById(userId)
+  } catch (err) {
+    return next(new HttpError('Adding to cart failed', 500))
+  }
+
+  if (!user) {
+    return next(new HttpError('Could not find user for the provided id', 404))
+  }
+
+  try {
+    const itemIdx = user.cart.findIndex(
+      item => item.productId.toString() === id
+    )
+
+    if (itemIdx === -1) {
+      user.cart.push(cartProduct)
+      await user.save()
+    } else {
+      return next(new HttpError('Item is already in cart', 422))
+    }
+  } catch (err) {
+    return next(new HttpError('Adding to cart failed, try again', 500))
+  }
+
+  res.status(201).json({ cart: cartProduct })
 }
 
 const deleteCart = async (req, res, next) => {}
 
-const getWish = async (req, res, next) => {}
+const getWish = async (req, res, next) => {
+  const userId = '61a4581b372f1e163515acbb'
 
-const addToWish = async (req, res, next) => {}
+  let userWish
+  try {
+    userWish = await User.findById(userId).populate('wishList')
+  } catch (err) {
+    return next(new HttpError('Something went wrong, could not find cart', 500))
+  }
+
+  if (!userWish || userWish.wishList.length === 0) {
+    return next(new HttpError('Wish list is empty at the moment', 404))
+  }
+
+  res.json({
+    wishList: userWish.wishList.map(item => item.toObject({ getters: true })),
+  })
+}
+
+const addToWish = async (req, res, next) => {
+  const userId = '61a4581b372f1e163515acbb'
+  const { id } = req.body
+
+  const wishProduct = id
+
+  let user
+  try {
+    user = await User.findById(userId)
+  } catch (err) {
+    return next(new HttpError('Adding to wish list failed', 500))
+  }
+
+  if (!user) {
+    return next(new HttpError('Could not find user for the provided id', 404))
+  }
+
+  try {
+    const itemIdx = user.wishList.findIndex(item => item._id.toString() === id)
+
+    if (itemIdx === -1) {
+      user.wishList.push(wishProduct)
+      await user.save()
+    } else {
+      return next(new HttpError('Item is already in wish list', 422))
+    }
+  } catch (err) {
+    return next(new HttpError('Adding to wish list failed, try again', 500))
+  }
+
+  res.status(201).json({ wishList: wishProduct })
+}
 
 const deleteWish = async (req, res, next) => {}
 

@@ -122,7 +122,7 @@ const addProduct = async (req, res, next) => {
     return next(new HttpError('Could not add new product.', 500))
   }
 
-  res.status(201).json({ product: newProduct })
+  res.status(201).json({ product: newProduct.toObject({ getters: true }) })
 }
 
 const editProduct = async (req, res, next) => {
