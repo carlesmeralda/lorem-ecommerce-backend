@@ -151,7 +151,36 @@ const addToCart = async (req, res, next) => {
   res.status(201).json({ cart: cartProduct })
 }
 
-const deleteCart = async (req, res, next) => {}
+const deleteCart = async (req, res, next) => {
+  const userId = '61a4581b372f1e163515acbb'
+  const productId = req.body.id
+
+  let user
+  try {
+    user = await User.findById(userId)
+  } catch (err) {
+    return next(new HttpError('Deleting an item in cart failed', 500))
+  }
+
+  if (!user) {
+    return next(new HttpError('Could not find user for the provided id', 404))
+  }
+
+  try {
+    const newCart = user.cart.filter(
+      item => item.productId.toString() !== productId
+    )
+    console.log(newCart)
+    user.cart = newCart
+    await user.save()
+  } catch (err) {
+    return next(
+      new HttpError('Something went wrong, deleting item failed', 404)
+    )
+  }
+
+  res.status(200).json({ message: 'An item has been removed succesfully' })
+}
 
 const getWish = async (req, res, next) => {
   const userId = '61a4581b372f1e163515acbb'
@@ -205,11 +234,93 @@ const addToWish = async (req, res, next) => {
   res.status(201).json({ wishList: wishProduct })
 }
 
-const deleteWish = async (req, res, next) => {}
+const deleteWish = async (req, res, next) => {
+  const userId = '61a4581b372f1e163515acbb'
+  const productId = req.body.id
 
-const clearCart = async (req, res, next) => {}
+  let user
+  try {
+    user = await User.findById(userId)
+  } catch (err) {
+    return next(new HttpError('Deleting an item in wish list failed', 500))
+  }
 
-const clearWish = async (req, res, next) => {}
+  if (!user) {
+    return next(new HttpError('Could not find user for the provided id', 404))
+  }
+
+  try {
+    const newWish = user.wishList.filter(
+      item => item._id.toString() !== productId
+    )
+    user.wishList = newWish
+    await user.save()
+  } catch (err) {
+    return next(
+      new HttpError('Something went wrong, deleting item failed', 404)
+    )
+  }
+
+  res.status(200).json({ message: 'An item has been removed succesfully' })
+}
+
+const clearCart = async (req, res, next) => {
+  const userId = '61a4581b372f1e163515acbb'
+
+  let user
+  try {
+    user = await User.findById(userId)
+  } catch (err) {
+    return next(new HttpError('Deleting an item in wish list failed', 500))
+  }
+
+  if (!user) {
+    return next(new HttpError('Could not find user for the provided id', 404))
+  }
+
+  try {
+    const emptyCart = []
+    user.cart = emptyCart
+    user.save()
+  } catch (err) {
+    return next(
+      new HttpError('Something went wrong, clearing cart failed', 404)
+    )
+  }
+
+  res
+    .status(200)
+    .json({ message: 'All items in cart has been removed successfulyy' })
+}
+
+const clearWish = async (req, res, next) => {
+  const userId = '61a4581b372f1e163515acbb'
+
+  let user
+  try {
+    user = await User.findById(userId)
+  } catch (err) {
+    return next(new HttpError('Deleting an item in wish list failed', 500))
+  }
+
+  if (!user) {
+    return next(new HttpError('Could not find user for the provided id', 404))
+  }
+
+  try {
+    const emptyWish = []
+    user.wishList = emptyWish
+    user.save()
+  } catch (err) {
+    return next(
+      new HttpError('Something went wrong, clearing wish list failed', 404)
+    )
+  }
+
+  res
+    .status(200)
+    .json({ message: 'All items in wish list has been removed successfulyy' })
+}
 
 const getOrder = async (req, res, next) => {}
 

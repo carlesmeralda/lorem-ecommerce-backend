@@ -7,18 +7,21 @@ router.get('/products', shopController.getProducts)
 
 router.get('/products/:productId', shopController.getProductById)
 
-// router.get('/cart/:userId', shopController.getCart)
 router.get('/cart/', shopController.getCart)
 
 router.post('/cart/', shopController.addToCart)
 
-router.delete('/cart/:userId/:productId', shopController.deleteCart)
+router.delete('/cart/', shopController.deleteCart)
+
+router.patch('/cart/', shopController.clearCart)
 
 router.get('/wishlist/', shopController.getWish)
 
 router.post('/wishlist/', shopController.addToWish)
 
-router.delete('/wishlist/:userId/:productId', shopController.deleteWish)
+router.delete('/wishlist/', shopController.deleteWish)
+
+router.patch('/wishlist/', shopController.clearWish)
 
 router.get('/orders', shopController.getOrder)
 
