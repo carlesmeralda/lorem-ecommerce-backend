@@ -1,6 +1,7 @@
 const Product = require('../models/product')
 const User = require('../models/user')
 const HttpError = require('../models/http-error')
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 
 const getProducts = async (req, res, next) => {
   const queryLimit = req.query.limit
@@ -326,6 +327,33 @@ const getOrder = async (req, res, next) => {}
 
 const createOrder = async (req, res, next) => {}
 
+const checkout = async (req, res, next) => {
+  const { id, totalPrice } = req.body
+
+  try {
+    const payment = await stripe.paymentIntents.create({
+      amount,
+      currency: 'USD',
+      automatic_payment_methods: {
+        enabled: true,
+      },
+      confirm: true,
+    })
+
+    console.log(payment)
+
+    res.status(200).json({
+      message: 'Payment successful',
+      success: 'true',
+      client_secret: payment.client_secret,
+    })
+  } catch (err) {
+    return next(
+      new HttpError('Something went wrong, Payment unsuccessful', 404)
+    )
+  }
+}
+
 module.exports = {
   getProducts,
   getProductById,
@@ -339,4 +367,5 @@ module.exports = {
   clearWish,
   getOrder,
   createOrder,
+  checkout,
 }

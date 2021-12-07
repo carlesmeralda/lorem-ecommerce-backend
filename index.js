@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
+const cors = require('cors')
 
 const adminRoute = require('./routes/admin-routes')
 const authRoute = require('./routes/auth-routes')
@@ -12,6 +13,7 @@ const app = express()
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
+app.use(cors({ origin: true }))
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*')

@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const cors = require('cors')
 
 const shopController = require('../controllers/shop-controllers')
 
@@ -26,5 +27,7 @@ router.patch('/wishlist/', shopController.clearWish)
 router.get('/orders', shopController.getOrder)
 
 router.get('/orders/create', shopController.createOrder)
+
+router.post('/checkout/', cors(), shopController.checkout)
 
 module.exports = router
