@@ -147,10 +147,10 @@ const editProduct = async (req, res, next) => {
   try {
     await editProduct.save()
   } catch (err) {
-    return next(new HttpError('Updating place failed', 500))
+    return next(new HttpError('Updating product failed', 500))
   }
 
-  res.status(200).json({ place: editProduct.toObject({ getters: true }) })
+  res.status(200).json({ product: editProduct.toObject({ getters: true }) })
 }
 
 const deleteProduct = async (req, res, next) => {
@@ -162,12 +162,12 @@ const deleteProduct = async (req, res, next) => {
 
     if (!deleteProduct) {
       return next(
-        new HttpError('Could not find place for the provided id.', 404)
+        new HttpError('Could not find product for the provided id.', 404)
       )
     }
   } catch (err) {
     return next(
-      new HttpError('Something went wrong, deleting place failed', 500)
+      new HttpError('Something went wrong, deleting product failed', 500)
     )
   }
 
@@ -175,11 +175,11 @@ const deleteProduct = async (req, res, next) => {
     await deleteProduct.remove()
   } catch (err) {
     return next(
-      new HttpError('Something went wrong, deleting place failed', 500)
+      new HttpError('Something went wrong, deleting product failed', 500)
     )
   }
 
-  res.status(200).json({ message: 'A place has been deleted successfully.' })
+  res.status(200).json({ message: 'A product has been deleted successfully.' })
 }
 
 module.exports = {
